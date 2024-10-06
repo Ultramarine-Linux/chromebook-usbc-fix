@@ -1,0 +1,11 @@
+[Unit]
+Description=Enable USB-C on chromebook
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/sbin/modprobe -r -a cros-ec-typec intel-pmc-mux
+ExecStart=/sbin/modprobe -a intel-pmc-mux cros-ec-typec
+
+[Install]
+WantedBy=multi-user.target
